@@ -1,30 +1,33 @@
-import React, {Component} from "react";
-import { connect } from "react-redux";
-import Note from "./Note";
-import { Button, Card } from 'semantic-ui-react'
-import { fetchNotes, fetchNotesSuccess, fetchNotesFailure } from '../actions/index'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Card } from 'semantic-ui-react';
+import Note from './Note';
+import { fetchNotes, fetchNotesSuccess, fetchNotesFailure } from '../actions/index';
 
-const mapStateToProps = state => {
-  return { notes: state.notes };
-};
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => ({ notes: state.notes });
+
+const mapDispatchToProps = dispatch => {
   return {
     fetchNotes: () => {
-      dispatch(fetchNotes()).payload.then((response) => {
-       dispatch(fetchNotesSuccess(response.data));
-      }).catch((error )=> {
-        dispatch(fetchNotesFailure(error.data))
-      })
+      dispatch(fetchNotes())
+        .payload.then(response => {
+          dispatch(fetchNotesSuccess(response.data));
+        })
+        .catch(error => {
+          dispatch(fetchNotesFailure(error.data));
+        });
     }
-  }
-}
+  };
+};
 
-class ConnectedList extends Component { 
+class ConnectedList extends Component {
   componentWillMount() {
     this.props.fetchNotes();
   }
+
   render(){
-    const notes = this.props.notes
+    const { notes } = this.props;
+
     return (
       <Card.Group  itemsPerRow={3}>
         {notes.map((note, i) => (
@@ -34,5 +37,8 @@ class ConnectedList extends Component {
     )
   }
 }
-const List = connect(mapStateToProps,mapDispatchToProps)(ConnectedList);
+const List = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedList);
 export default List;

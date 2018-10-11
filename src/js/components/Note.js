@@ -1,17 +1,19 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import { connect } from "react-redux";
-import { Button, Card, Icon } from 'semantic-ui-react'
-import { deleteNote, deleteNoteSuccess, deleteNoteFailure } from '../actions/index'
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Card, Icon } from 'semantic-ui-react'
+import { deleteNote, deleteNoteSuccess, deleteNoteFailure } from '../actions/index';
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteNote: note => dispatch(deleteNote(note)).payload.then((response) => {
-      dispatch(deleteNoteSuccess(note));
-     }).catch((error )=> {
-       dispatch(deleteNoteFailure(error.data))
-     })
+    deleteNote: note =>
+      dispatch(deleteNote(note))
+        .payload.then(response => {
+          dispatch(deleteNoteSuccess(note));
+        })
+        .catch(error => {
+          dispatch(deleteNoteFailure(error.data));
+        })
   };
 };
 
@@ -21,8 +23,8 @@ class Note extends Component {
 
   constructor(props) {
     super(props);
-    this.state = props.note
-    this.state.index = props.index
+    this.state = props.note;
+    this.state.index = props.index;
   }
   handleDelete(e){
     // event.preventDefault();
@@ -55,5 +57,7 @@ Note.propTypes = {
   })
 }
 
-const Note1 = connect(null, mapDispatchToProps)(Note);
+const Note1 = connect(null,
+  mapDispatchToProps
+)(Note);
 export default Note1;
