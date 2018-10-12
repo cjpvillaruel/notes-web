@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import 'isomorphic-fetch';
 import './App.css';
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       notes: []
-    }
+    };
   }
 
   componentDidMount(){
@@ -18,9 +18,10 @@ class App extends Component {
       )
   }
   render() {
+    console.log(notes);
     return (
       <div className="notes">
-        <h1>Notes</h1>
+        <h1>Notesss</h1>
         {this.state.notes.map(note =>
           <div key={note.id} class='note'>
             <h1>{note.title}</h1>
