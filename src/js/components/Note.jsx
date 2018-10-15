@@ -18,18 +18,22 @@ const mapDispatchToProps = dispatch => ({
 class Note extends Component {
   constructor(props) {
     super(props);
-    this.state = props.note;
-    this.state.index = props.index;
+    this.state = {
+      note: props.note,
+      index: props.index
+    };
     this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleDelete() {
     const { deleteCurrentNote } = this.props;
-    deleteCurrentNote(this.state);
+    const { note } = this.state;
+    deleteCurrentNote(note);
   }
 
   render() {
-    const { _id, title, text } = this.state;
+    const { note } = this.state;
+    const { _id, title, text } = note;
     return (
       <Card color="orange" raised id={_id}>
         <Card.Content>
@@ -51,20 +55,20 @@ class Note extends Component {
   }
 }
 
-Note.propTypes = {
-  note: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired
-  }),
-  index: PropTypes.number,
-  deleteCurrentNote: PropTypes.func.isRequired
-};
+// Note.propTypes = {
+//   note: PropTypes.shape({
+//     title: PropTypes.string.isRequired,
+//     text: PropTypes.string.isRequired,
+//     _id: PropTypes.string.isRequired
+//   }),
+//   index: PropTypes.number,
+//   deleteCurrentNote: PropTypes.func.isRequired
+// };
 
-Note.defautProps = {
-  note: null,
-  index: null
-};
+// Note.defautProps = {
+//   note: null,
+//   index: null
+// };
 
 const Note1 = connect(
   null,

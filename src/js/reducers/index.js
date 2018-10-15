@@ -33,7 +33,10 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_NOTE:
       return { ...state, notes: [...state.notes] };
     case DELETE_NOTE_SUCCESS:
-      return { ...state, notes: [...state.notes] };
+      let notes = Object.assign([], state.notes);
+      const index = notes.findIndex(x => x._id === action.payload._id);
+      notes.splice(index, 1);
+      return { ...state, notes };
     case DELETE_NOTE_FAILURE:
       return { state, notes: [state.notes] };
     default:
