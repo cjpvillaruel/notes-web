@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react';
 import { deleteNote, deleteNoteSuccess, deleteNoteFailure } from '../actions/index';
 
 const mapDispatchToProps = dispatch => ({
-  deleteNote: note =>
+  deleteCurrentNote: note =>
     dispatch(deleteNote(note))
       .payload.then(() => {
         dispatch(deleteNoteSuccess(note));
@@ -20,11 +20,12 @@ class Note extends Component {
     super(props);
     this.state = props.note;
     this.state.index = props.index;
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleDelete() {
-    const { deleteNote } = this.props;
-    deleteNote(this.state);
+    const { deleteCurrentNote } = this.props;
+    deleteCurrentNote(this.state);
   }
 
   render() {
@@ -36,7 +37,7 @@ class Note extends Component {
             {title}
             <Icon
               circular
-              onClick={this.handleDelete(this)}
+              onClick={this.handleDelete}
               inverted
               color="orange"
               name="close"
@@ -50,14 +51,20 @@ class Note extends Component {
   }
 }
 
-// Note.propTypes = {
-//   note: PropTypes.shape({
-//     title: PropTypes.string,
-//     text: PropTypes.string,
-//     _id: PropTypes.string
-//   }),
-//   index: PropTypes.number,
-// }
+Note.propTypes = {
+  note: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired
+  }),
+  index: PropTypes.number,
+  deleteCurrentNote: PropTypes.func.isRequired
+};
+
+Note.defautProps = {
+  note: null,
+  index: null
+};
 
 const Note1 = connect(
   null,

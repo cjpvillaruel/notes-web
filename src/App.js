@@ -10,13 +10,6 @@ class App extends Component {
     };
   }
 
-  componentDidMount(){
-    return fetch("/api/notes")
-      .then((response) => response.json())
-      .then((notes) =>
-        this.setState({notes})
-      )
-  }
   render() {
     console.log(notes);
     return (

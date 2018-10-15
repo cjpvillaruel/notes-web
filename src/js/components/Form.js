@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uuidv1 from 'uuid';
 import { Form, Button, TextArea } from 'semantic-ui-react';
 import { addNote, addNoteFailure, addNoteSuccess } from '../actions/index';
 
@@ -33,7 +32,6 @@ class ConnectedForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { title, text } = this.state;
-    const id = uuidv1();
     this.props.addNote({ title, text });
     this.setState({ title: '', text: '' });
   }
@@ -41,26 +39,25 @@ class ConnectedForm extends Component {
   render() {
     const { title, text } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}  className="form-group">
-          <label htmlFor="text">Title</label>
-          <Form.Input type='text' 
-            className="form-control"
-            id="title"
-            value={title}
-            name= "title"
-            onChange={this.handleChange}/>
-          <label htmlFor="text">Details</label>
-          <TextArea
-            type="text"
-            id="text"
-            name="text"
-            value={text}
-            onChange={this.handleChange}
-          />
-        <Button color="teal" type='submit'>Submit</Button>
+      <Form onSubmit={this.handleSubmit} className="form-group">
+        <label htmlFor="title">Title</label>
+        <Form.Input type="text" 
+          className="form-control"
+          id="title"
+          value={title}
+          name="title"
+          onChange={this.handleChange}/>
+        <label htmlFor="text">Details</label>
+        <TextArea type="text" id="text" name="text" value={text} onChange={this.handleChange} />
+        <Button color="teal" type="submit">
+          Submit
+        </Button>
       </Form>
     );
   }
 }
-const NoteForm = connect(null, mapDispatchToProps)(ConnectedForm);
+const NoteForm = connect(
+  null,
+  mapDispatchToProps
+)(ConnectedForm);
 export default NoteForm;

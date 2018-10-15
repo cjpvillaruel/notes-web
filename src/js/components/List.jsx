@@ -7,7 +7,7 @@ import { fetchNotes, fetchNotesSuccess, fetchNotesFailure } from '../actions/ind
 const mapStateToProps = state => ({ notes: state.notes });
 
 const mapDispatchToProps = dispatch => ({
-  fetchNotes: () => {
+  fetchAllNotes: () => {
     dispatch(fetchNotes())
       .payload.then(response => {
         dispatch(fetchNotesSuccess(response.data));
@@ -20,13 +20,12 @@ const mapDispatchToProps = dispatch => ({
 
 class ConnectedList extends Component {
   componentWillMount() {
-    this.props.fetchNotes();
+    const { fetchAllNotes } = this.props;
+    fetchAllNotes();
   }
 
   render() {
     const { notes } = this.props;
-    console.log(notes)
-
     return (
       <Card.Group itemsPerRow={3}>
         {notes.map((note, i) => (

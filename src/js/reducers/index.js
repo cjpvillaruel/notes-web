@@ -23,16 +23,17 @@ const rootReducer = (state = initialState, action) => {
     case ADD_NOTE_FAILURE:
       return { state, notes: [state.notes] };
     case FETCH_NOTES:
-    	return { ...state, notes: [...state.notes] };
-    case FETCH_NOTES_SUCCESS:// return list of posts and make loading = false
+      return { ...state, notes: [...state.notes] };
+    case FETCH_NOTES_SUCCESS:
+      // return list of posts and make loading = false
       return { ...state, notes: action.payload };
-    case FETCH_NOTES_FAILURE:// return error and make loading = false
+    case FETCH_NOTES_FAILURE:
+      // return error and make loading = false
       return { state, notes: [] };
     case DELETE_NOTE:
-      return { ...state, notes: [...state.notes]}
+      return { ...state, notes: [...state.notes] };
     case DELETE_NOTE_SUCCESS:
-      // console.log(state.notes.filter(action.payload))
-      return { ...state, notes: [...state.notes]};
+      return { ...state, notes: [...state.notes] };
     case DELETE_NOTE_FAILURE:
       return { state, notes: [state.notes] };
     default:
