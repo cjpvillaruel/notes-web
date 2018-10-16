@@ -55,20 +55,16 @@ class Note extends Component {
   }
 }
 
-// Note.propTypes = {
-//   note: PropTypes.shape({
-//     title: PropTypes.string.isRequired,
-//     text: PropTypes.string.isRequired,
-//     _id: PropTypes.string.isRequired
-//   }),
-//   index: PropTypes.number,
-//   deleteCurrentNote: PropTypes.func.isRequired
-// };
+Note.propTypes = {
+  note: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired
+  }),
+  index: PropTypes.number,
+  deleteCurrentNote: PropTypes.func.isRequired
+};
 
-// Note.defautProps = {
-//   note: null,
-//   index: null
-// };
 
 const Note1 = connect(
   null,

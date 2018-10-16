@@ -4,7 +4,7 @@ import { Card } from 'semantic-ui-react';
 import Note from './Note';
 import { fetchNotes, fetchNotesSuccess, fetchNotesFailure } from '../actions/index';
 
-const mapStateToProps = state => ({ notes: state.notes });
+const mapStateToProps = state => ({ notes: state.notes.notes });
 
 const mapDispatchToProps = dispatch => ({
   fetchAllNotes: () => {

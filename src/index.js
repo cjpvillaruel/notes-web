@@ -9,7 +9,7 @@ import './css/app.css';
 
 render(
   <Provider store={store}>
-    <App id="app"/>
+    <App id="app" />
   </Provider>,
   document.getElementById('app')
 );
