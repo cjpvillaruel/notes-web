@@ -43,6 +43,7 @@ class Note extends Component {
               circular
               onClick={this.handleDelete}
               inverted
+              className="delete-button"
               color="orange"
               name="close"
               size="tiny"

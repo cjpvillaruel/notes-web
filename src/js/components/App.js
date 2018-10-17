@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react';
 import List from './List';
 import NoteForm from './Form';
 
-
 const App = () => (
   <Grid padded>
     <Grid.Column width={4} className="formDiv">
