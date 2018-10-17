@@ -1,15 +1,14 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 import List from './List';
 import NoteForm from './Form';
 
 const App = () => (
   <Grid padded>
-    <Grid.Column width={4} className="formDiv">
-      <h2>add a new note</h2>
+    <Grid.Column width={16} className="formDiv">
       <NoteForm />
     </Grid.Column>
-    <Grid.Column width={12}>
+    <Grid.Column width={16}>
       <List />
     </Grid.Column>
   </Grid>

@@ -1,9 +1,11 @@
+body {
+	background: #efefef;
+}
 #app{
 	width: 70%;
 	margin: 5em auto 5em auto;
 }
 
 .formDiv{
-	background: #ff937f;
-	color: white;
+	color: rgb(111, 108, 108);
 }

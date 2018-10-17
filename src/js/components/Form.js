@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { Form, Button, TextArea } from 'semantic-ui-react';
 import { addNote, addNoteFailure, addNoteSuccess } from '../actions/index';
 
+const InitialNoteForm = (props) => (
+  <div className="initial-note-form">
+    <input onClick={props.onClick} placeholder="Take a note" />
+  </div>
+);
+
 const mapDispatchToProps = dispatch => ({
   addNote: note =>
     dispatch(addNote(note))
@@ -19,10 +25,12 @@ class ConnectedForm extends Component {
     super();
     this.state = {
       title: '',
-      text: ''
+      text: '',
+      open: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handleChange(event) {
@@ -36,12 +44,18 @@ class ConnectedForm extends Component {
     this.setState({ title: '', text: '' });
   }
 
+  handleOpen(event) {
+    event.preventDefault();
+    this.setState({ open: true });
+  }
+
   render() {
-    const { title, text } = this.state;
-    return (
+    const { title, text, open } = this.state;
+    return open ? (
       <Form onSubmit={this.handleSubmit} className="form-group">
         <label htmlFor="title">Title</label>
-        <Form.Input type="text" 
+        <Form.Input
+          type="text" 
           className="form-control"
           id="title"
           value={title}
@@ -53,6 +67,8 @@ class ConnectedForm extends Component {
           Submit
         </Button>
       </Form>
+    ) : (
+      <InitialNoteForm onClick={this.handleOpen} />
     );
   }
 }

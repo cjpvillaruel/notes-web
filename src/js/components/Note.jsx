@@ -35,7 +35,7 @@ class Note extends Component {
     const { note } = this.state;
     const { _id, title, text } = note;
     return (
-      <Card color="orange" raised id={_id}>
+      <Card color="teal" raised id={_id}>
         <Card.Content>
           <Card.Header>
             {title}
@@ -44,7 +44,7 @@ class Note extends Component {
               onClick={this.handleDelete}
               inverted
               className="delete-button"
-              color="orange"
+              color="gray"
               name="close"
               size="tiny"
             />
