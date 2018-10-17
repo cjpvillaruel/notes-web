@@ -44,7 +44,7 @@ class Note extends Component {
               onClick={this.handleDelete}
               inverted
               className="delete-button"
-              color="gray"
+              color="grey"
               name="close"
               size="tiny"
             />

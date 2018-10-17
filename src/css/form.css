@@ -2,9 +2,10 @@
 	margin-bottom: 10px;
 }
 .initial-note-form {
-	margin: 2rem auto;
+	margin: 1rem auto;
 	background: white;
 	width: 70%;
+	padding: 1em;
 	-webkit-box-shadow: 2px 7px 33px -4px rgba(150,147,150,0.5);
 	-moz-box-shadow: 2px 7px 33px -4px rgba(150,147,150,0.5);
 	box-shadow: 2px 7px 33px -4px rgba(150,147,150,0.5);
@@ -12,7 +13,25 @@
 .initial-note-form input {
     height: 3rem;
     border: none;
-    width: 80%;
+    width: 100%;
 	padding: 1rem;
 	outline: none;
+	color: #525252;
+}
+.initial-note-form input::placeholder { /* Chrome/Opera/Safari */
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.initial-note-form textarea {
+	border: none;
+    width: 100%;
+	padding: 1rem;
+	outline: none;
+	color: #525252;
+	min-height: 150px;
+}
+
+.initial-note-form .action-container{
+	display: flex;
+    justify-content: flex-end;
 }

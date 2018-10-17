@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Form, Button, TextArea } from 'semantic-ui-react';
 import { addNote, addNoteFailure, addNoteSuccess } from '../actions/index';
 
-const InitialNoteForm = (props) => (
+const InitialNoteForm = ({ onClick, value }) => (
   <div className="initial-note-form">
-    <input onClick={props.onClick} placeholder="Take a note" />
+    <input onClick={onClick} value={value} placeholder="Take a note" />
   </div>
 );
 
@@ -26,11 +26,12 @@ class ConnectedForm extends Component {
     this.state = {
       title: '',
       text: '',
-      open: false,
+      open: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleChange(event) {
@@ -49,26 +50,45 @@ class ConnectedForm extends Component {
     this.setState({ open: true });
   }
 
+  handleClose(event) {
+    event.preventDefault();
+    this.setState({ open: false });
+  }
+
   render() {
     const { title, text, open } = this.state;
     return open ? (
-      <Form onSubmit={this.handleSubmit} className="form-group">
-        <label htmlFor="title">Title</label>
-        <Form.Input
-          type="text" 
+      <form onSubmit={this.handleSubmit} className="initial-note-form">
+        <input
+          type="text"
+          placeholder="Title"
           className="form-control"
           id="title"
           value={title}
           name="title"
-          onChange={this.handleChange}/>
-        <label htmlFor="text">Details</label>
-        <TextArea type="text" id="text" name="text" value={text} onChange={this.handleChange} />
-        <Button color="teal" type="submit">
-          Submit
-        </Button>
-      </Form>
+          onChange={this.handleChange}
+        />
+        <textarea
+          type="text"
+          id="text"
+          name="text"
+          placeholder="Take a note"
+          value={text}
+          onChange={this.handleChange}
+          autoFocus
+        />
+        <div className="action-container">
+          <Button color="teal" onClick={this.handleClose}>
+            Cancel
+          </Button>
+          <Button color="teal" type="submit">
+            Save
+          </Button>
+        </div>
+        
+      </form>
     ) : (
-      <InitialNoteForm onClick={this.handleOpen} />
+      <InitialNoteForm value={text} onClick={this.handleOpen} />
     );
   }
 }
